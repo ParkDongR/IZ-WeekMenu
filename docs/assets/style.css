@@ -39,10 +39,10 @@ body {
 .brand-name {
   font-weight: 800;
   font-size: 20px;      /* 살짝 크게 */
-  color: #2563eb;       /* 파란색 (Tailwind blue-600) */
+  color: #000000;       /* 파란색 (Tailwind blue-600) */
   letter-spacing: .5px;
 }
-.headline { font-weight: 900; font-size: 20px; color: #2563eb; }
+.headline { font-weight: 900; font-size: 20px; color: #000000; }
 
 /* 컨테이너 */
 .container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
