@@ -101,9 +101,9 @@ w.write(
  "<header class=\"site-header\">" +
    "<div class=\"brand\">" +
      "<img src=\"assets/izen-logo.png\" alt=\"IZEN\" class=\"logo\"/>" +
-     "<span class=\"brand-name\">의 밥</span>" +
+     "<span class=\"brand-name\"></span>" +
    "</div>" +
-   "<div class=\"headline\">한 주 식단표</div>" +
+   "<div class=\"headline\">주간 식단표</div>" +
  "</header>"
 );
 
@@ -166,7 +166,7 @@ w.write("<td class=\"day-col\">"
 }
 
 w.write("</tbody></table>");
-w.write("<div class=\"footer\">3일 주기 자동 업뎃~>.-</div>");
+w.write("<div class=\"footer\">매일 아침 8시 자동 업뎃~>.-</div>");
 w.write("</body></html>");
 }
 
