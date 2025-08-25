@@ -166,7 +166,7 @@ w.write("<td class=\"day-col\">"
 }
 
 w.write("</tbody></table>");
-w.write("<div class=\"footer\">매일 아침 8시 자동 업뎃~>.-</div>");
+w.write("<div class=\"footer\">매일 아침 9시5분에 자동 업뎃~>.-</div>");
 w.write("</body></html>");
 }
 
