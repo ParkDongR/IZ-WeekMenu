@@ -2,7 +2,7 @@ name: Build menu site every 3 days
 
 on:
   schedule:
-    - cron: "0 23 * * *"   # 매일 23:00 UTC = KST 매일 오전 8시
+    - cron: "5 0 * * *"   # 매일 00:05 UTC = KST 매일 오전 9:05
   workflow_dispatch:
 
 
