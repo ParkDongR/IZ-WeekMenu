@@ -15,7 +15,8 @@
 * { box-sizing: border-box; }
 html, body { margin:0; padding:0; }
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 30px;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -41,7 +42,7 @@ body {
   grid-column: 2 / 3; 
   justify-self: center; 
   font-weight: 700; font-size: 40px; color: #000000;
-  font-family: 'Nanum Pen Script', cursive;
+  /* font-family: 'Nanum Pen Script', cursive; */
   
 }
 
@@ -68,7 +69,7 @@ body {
 .table-wrap { overflow-x: auto;   -webkit-overflow-scrolling: touch; background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 6px 18px rgba(15,23,42,.06); }
 .weekly-table { width: 100%;   min-width: 720px; border-collapse: collapse;  }
 .weekly-table thead th {
-  text-align: left; padding: 14px 12px; font-size: 14px;
+  text-align: left; padding: 14px 12px; font-size: 30px;
   color: var(--muted); background: #f1f5f9; border-bottom: 1px solid var(--border);
 }
 .weekly-table tbody tr { border-bottom: 1px solid var(--border); }
