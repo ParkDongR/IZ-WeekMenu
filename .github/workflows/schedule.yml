@@ -1,58 +1,49 @@
-name: Build menu site every 3 days
+name: Build & Deploy menu site (every KST 09:05)
 
 on:
   schedule:
-    - cron: "5 0 * * *"   # 매일 00:05 UTC = KST 매일 오전 9:05
+    - cron: "5 0 * * *"   # UTC 00:05 = KST 09:05
   workflow_dispatch:
 
-
+# Pages 배포에 필요한 권한
 permissions:
-  contents: write  # 자동 커밋/푸시 권한
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0           # 푸시/리베이스 시 필요할 수 있음
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
-          cache: maven             # Maven 캐시
-
-      - name: Show tool versions (debug)
-        run: |
-          java -version
-          mvn -v
+          cache: maven
 
       - name: Build & Generate site
         run: mvn -q -DskipTests compile exec:java
 
-      - name: Check generated files (debug)
-        run: |
-          ls -la docs || true
-          test -f docs/index.html && echo "index.html OK" || (echo "index.html missing" && exit 1)
- 
-      - name: What changed? (debug)
-        run: |
-          git status --porcelain
-          git diff --stat
-          git diff --cached --stat || true  
+      # docs/ 에 생성된 정적 결과물을 Pages 아티팩트로 업로드
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
 
-
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add docs/
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: refresh menu site"
-            git push
-          fi
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
